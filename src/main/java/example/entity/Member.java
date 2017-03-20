@@ -1,5 +1,6 @@
 package example.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -14,7 +15,9 @@ public class Member {
     @Id
     @GeneratedValue
     private Long id;
+    @Column(name = "username", nullable = false)
     private String username;
+    @Column(name = "password", nullable = false)
     private String password;
 
     public Long getId() {

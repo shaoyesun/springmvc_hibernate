@@ -14,18 +14,34 @@
        http://www.springframework.org/schema/tx
        http://www.springframework.org/schema/tx/spring-tx.xsd">
 
-    <context:annotation-config/>
-    <!-- spring扫描的包 -->
-    <context:component-scan base-package="example"/>
+    <!--spring的配置文件 与springMVC的配置文件对包的重复扫描装配会照成失效在主容器中（applicationContext.xml），将Controller的注解排除掉-->
+    <context:component-scan base-package="example">
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
 
     <!--<bean id="propertyConfigurer"
           class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"
           p:location="jdbc.properties"/>-->
-    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"
-          p:driverClassName="com.mysql.jdbc.Driver"
-          p:url="jdbc:mysql://127.0.0.1:3306/spring_hibernate"
-          p:username="root"
-          p:password=""/>
+    <!--<context:property-placeholder location="classpath:jdbc.properties"/>
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="${jdbc.driverClassName}"/>
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+    </bean>-->
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://127.0.0.1:3306/spring_hibernate"/>
+        <property name="username" value="root"/>
+        <property name="password" value=""/>
+    </bean>
+    <!--<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
+          init-method="init" destroy-method="close">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://127.0.0.1:3306/spring_hibernate"/>
+        <property name="username" value="root"/>
+        <property name="password" value=""/>
+    </bean>-->
 
     <!-- 创建sessinFactory -->
     <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
@@ -37,17 +53,14 @@
         </property>
         <property name="hibernateProperties">
             <props>
-
                 <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
                 <prop key="hibernate.show_sql">true</prop>
-                <prop key="connection.autoReconnect">true</prop>
-                <prop key="connection.autoReconnectForPools">true</prop>
-                <!--<prop key="connection.is-connection-validation-required">true</prop>-->
+                <prop key="hbm2ddl.auto">update</prop>
             </props>
         </property>
     </bean>
 
-    <tx:annotation-driven transaction-manager="transactionManager"/>
+    <!--<tx:annotation-driven transaction-manager="transactionManager"/>-->
 
     <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
         <property name="sessionFactory" ref="sessionFactory"></property>
@@ -55,15 +68,12 @@
 
     <tx:advice id="txAdvice" transaction-manager="transactionManager">
         <tx:attributes>
-            <!-- all methods starting with 'get' are read-only -->
-            <!--<tx:method name="queryByUsername" read-only="true"/>-->
-            <!-- other methods use the default transaction settings (see below) -->
-            <tx:method name="test*" propagation="REQUIRED"/>
+            <tx:method name="*" propagation="REQUIRED"/>
         </tx:attributes>
     </tx:advice>
 
     <aop:config>
-        <aop:pointcut expression="execution(* example.service.*.*(..))" id="fooServiceOperation"/>
+        <aop:pointcut expression="execution(* example.service..*.*(..))" id="fooServiceOperation"/>
         <aop:advisor advice-ref="txAdvice" pointcut-ref="fooServiceOperation"/>
     </aop:config>
 

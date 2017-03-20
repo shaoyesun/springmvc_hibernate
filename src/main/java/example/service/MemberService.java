@@ -10,7 +10,7 @@ import example.dao.MemberDao;
  * Created by root on 17-3-17.
  */
 @Service
-@Transactional
+//@Transactional
 public class MemberService {
 
     @Autowired
