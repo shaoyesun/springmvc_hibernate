@@ -21,6 +21,7 @@ public class MemberDao {
 
     public String test() {
         Session session = sessionFactory.getCurrentSession();
+        sessionFactory.openSession();
         try {
             //Transaction ts = session.beginTransaction();
             Member member = new Member();
@@ -28,9 +29,9 @@ public class MemberDao {
             member.setUsername("test1");
             session.save(member);
             //ts.commit();
-            Member member1 = new Member();
+            /*Member member1 = new Member();
             member.setPassword("test2");
-            session.save(member1);
+            session.save(member1);*/
             //ts.commit();
         } finally {
             //session.close();
