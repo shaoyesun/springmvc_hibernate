@@ -29,9 +29,9 @@ public class MemberDao {
             member.setUsername("test1");
             session.save(member);
             //ts.commit();
-            /*Member member1 = new Member();
+            Member member1 = new Member();
             member.setPassword("test2");
-            session.save(member1);*/
+            session.save(member1);
             //ts.commit();
         } finally {
             //session.close();
