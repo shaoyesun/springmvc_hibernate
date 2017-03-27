@@ -14,12 +14,12 @@ import example.entity.Member;
  * Created by root on 17-3-17.
  */
 @Repository
-public class MemberDao {
+public class MemberDao extends BaseDao<Member, Long>{
 
-    @Inject
+    /*@Inject
     private SessionFactory sessionFactory;
 
-    public String test() {
+    public String save() {
         Session session = sessionFactory.getCurrentSession();
         sessionFactory.openSession();
         try {
@@ -29,9 +29,9 @@ public class MemberDao {
             member.setUsername("test1");
             session.save(member);
             //ts.commit();
-            Member member1 = new Member();
+            *//*Member member1 = new Member();
             member.setPassword("test2");
-            session.save(member1);
+            session.save(member1);*//*
             //ts.commit();
         } finally {
             //session.close();
@@ -39,6 +39,6 @@ public class MemberDao {
             System.out.println("test");
         }
         return "testdao";
-    }
+    }*/
 
 }
