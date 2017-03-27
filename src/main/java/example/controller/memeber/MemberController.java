@@ -1,6 +1,7 @@
 package example.controller.memeber;
 
 import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,6 +26,14 @@ public class MemberController {
     @ResponseBody
     public String save() {
         return memberService.save();
+    }
+
+    @RequestMapping(value = "/getOne")
+    @ResponseBody
+    public String getOne(Long id) {
+        Member m = memberService.getOne(id);
+        System.out.println(m.getUsername());
+        return null;
     }
 
     @RequestMapping(value = "/findAll")

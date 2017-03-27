@@ -37,6 +37,10 @@ public class MemberService {
         //return memberDao.save(member).toString();
     }
 
+    public Member getOne(Long id) {
+        return memberDao.getOne(id);
+    }
+
     public List<Member> findAll() {
         return memberDao.findAll();
     }
