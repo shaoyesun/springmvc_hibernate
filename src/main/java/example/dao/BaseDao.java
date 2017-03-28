@@ -3,7 +3,6 @@ package example.dao;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.criterion.Restrictions;
 
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
