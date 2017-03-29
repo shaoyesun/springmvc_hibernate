@@ -13,7 +13,8 @@ import example.entity.Member;
 import example.service.MemberService;
 
 /**
- * Created by root on 17-3-17.
+ * 1.spring事务管理实现
+ *
  */
 @Controller
 @RequestMapping(value = "/member")

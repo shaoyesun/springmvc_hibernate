@@ -14,7 +14,7 @@
        http://www.springframework.org/schema/tx
        http://www.springframework.org/schema/tx/spring-tx.xsd">
 
-    <!--spring的配置文件 与springMVC的配置文件对包的重复扫描装配会照成失效在主容器中（applicationContext.xml），将Controller的注解排除掉-->
+    <!--spring的配置文件与springMVC的配置文件对包的重复扫描装配会照成失效在主容器中（applicationContext.xml，将Controller的注解排除掉-->
     <context:component-scan base-package="example">
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
@@ -35,13 +35,6 @@
         <property name="username" value="root"/>
         <property name="password" value=""/>
     </bean>
-    <!--<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
-          init-method="init" destroy-method="close">
-        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-        <property name="url" value="jdbc:mysql://127.0.0.1:3306/spring_hibernate"/>
-        <property name="username" value="root"/>
-        <property name="password" value=""/>
-    </bean>-->
 
     <!-- 创建sessinFactory -->
     <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
