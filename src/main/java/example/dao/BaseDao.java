@@ -41,6 +41,10 @@ public class BaseDao<T, PK extends Serializable> {
         return (T) getSession().get(aClass, id);
     }
 
+    public T get(Serializable id) {
+        return (T) getSession().get(aClass, id);
+    }
+
     public List<T> findAll() {
         Criteria criteria = getSession().createCriteria(aClass);
         return criteria.list();

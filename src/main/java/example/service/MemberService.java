@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,6 +27,8 @@ public class MemberService {
         Member member = new Member();
         member.setPassword("test0");
         member.setUsername("test0");
+        Serializable id = memberDao.save(member);
+        memberDao.get(id);
         Member member1 = new Member();
         member1.setPassword("test1");
         member1.setUsername("test1");
