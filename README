@@ -2,8 +2,14 @@ springmvc整合hibernate
 一、数据源连接
 二、事务配置
 三、shiro配置
-    1.新建applicationContext_shiro.xml
-    2.web.xml配置
+    1.pom.xml
+      <dependency>
+         <groupId>org.apache.shiro</groupId>
+         <artifactId>shiro-all</artifactId>
+         <version>1.2.3</version>
+      </dependency>
+    2.新建applicationContext_shiro.xml
+    3.web.xml配置
       1)在ContextLoaderListener中引入applicationContext_shiro.xml
       2)添加shiroFilter，在OpenSessionInViewFilter下面
       <filter>
@@ -16,8 +22,8 @@ springmvc整合hibernate
         <filter-name>shiroFilter</filter-name>
         <url-pattern>/*</url-pattern>
       </filter-mapping>
-    3.新建ShiroRealm.java
-    4.测试
+    4.新建ShiroRealm.java
+    5.测试
       /toLogin = authc <!-- authc 表示需要认证才能访问的页面 -->
       /home = authc, perms[/home]  <!-- perms 表示需要该权限才能访问的页面 -->
       /admin = authc, roles[admin] <!--表示用户必需已通过认证,并拥有admin角色才可以正常发起'/admin'请求-->
