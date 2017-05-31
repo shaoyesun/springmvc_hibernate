@@ -25,13 +25,20 @@
         <property name="loginUrl" value="/toLogin" />
         <property name="successUrl" value="/home" />
         <property name="unauthorizedUrl" value="/403" />
-
+        <property name="filters">
+            <map>
+                <entry key="roles">
+                    <bean class="example.service.shiro.CustomRolesAuthorizationFilter" />
+                </entry>
+            </map>
+        </property>
         <property name="filterChainDefinitions">
             <value>
                 /toLogin = authc <!-- authc 表示需要认证才能访问的页面 -->
                 /home = authc, perms[/home]  <!-- perms 表示需要该权限才能访问的页面 -->
                 /admin = authc, roles[admin] <!--表示用户必需已通过认证,并拥有admin角色才可以正常发起'/admin'请求-->
-                /home1 = authc, roles[reg_user] <!--表示用户必需已通过认证,并拥有admin角色才可以正常发起'/reg_user'请求-->
+                /home1/** = authc, roles[reg_user] <!--表示用户必需已通过认证,并拥有admin角色才可以正常发起'/home1'请求-->
+                /home2/** = authc, roles[reg_user,admin] <!--表示用户必需已通过认证,并拥有admin或reg_user角色才可以正常发起'/home2'请求-->
             </value>
         </property>
     </bean>

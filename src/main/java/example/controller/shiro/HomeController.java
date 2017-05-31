@@ -19,4 +19,11 @@ public class HomeController {
         System.out.println("登录成功");
         return "/shiro/home";
     }
+
+    @RequestMapping("/home2")
+    public String index2() {
+        System.out.println("登录成功");
+        return "/shiro/home";
+    }
+
 }
