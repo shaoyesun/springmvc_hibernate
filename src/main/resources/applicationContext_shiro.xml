@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+	http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context.xsd">
+
+
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+        <property name="realm" ref="shiroDbRealm"/>
+        <!--<property name="cacheManager" ref="cacheManager"></property>-->
+    </bean>
+
+    <bean id="shiroDbRealm" class="example.service.shiro.ShiroRealm">
+        <property name="userService" ref="userService" />
+    </bean>
+
+    <bean id="userService" class="example.service.shiro.UserService"></bean>
+
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <property name="securityManager" ref="securityManager" />
+        <property name="loginUrl" value="/toLogin" />
+        <property name="successUrl" value="/home" />
+        <property name="unauthorizedUrl" value="/403" />
+
+        <property name="filterChainDefinitions">
+            <value>
+                /toLogin = authc <!-- authc 表示需要认证才能访问的页面 -->
+                /home = authc, perms[/home]  <!-- perms 表示需要该权限才能访问的页面 -->
+                /admin = authc, roles[admin] <!--表示用户必需已通过认证,并拥有admin角色才可以正常发起'/admin'请求-->
+                /home1 = authc, roles[reg_user] <!--表示用户必需已通过认证,并拥有admin角色才可以正常发起'/reg_user'请求-->
+            </value>
+        </property>
+    </bean>
+
+     <!--<bean id="shiroCacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
+        <property name="cacheManager" ref="cacheManager" /> </bean>-->
+</beans>
