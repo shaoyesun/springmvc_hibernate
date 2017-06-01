@@ -9,16 +9,14 @@
 	http://www.springframework.org/schema/context/spring-context.xsd">
 
 
+    <!--用于管理所有的Subject-->
     <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
         <property name="realm" ref="shiroDbRealm"/>
-        <!--<property name="cacheManager" ref="cacheManager"></property>-->
+        <property name="cacheManager" ref="cacheManager"></property>
     </bean>
 
-    <bean id="shiroDbRealm" class="example.service.shiro.ShiroRealm">
-        <property name="userService" ref="userService" />
-    </bean>
-
-    <bean id="userService" class="example.service.shiro.UserService"></bean>
+    <!--用于进行权限信息的验证-->
+    <bean id="shiroDbRealm" class="example.service.shiro.ShiroRealm"></bean>
 
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
         <property name="securityManager" ref="securityManager" />
@@ -43,6 +41,8 @@
         </property>
     </bean>
 
-     <!--<bean id="shiroCacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
-        <property name="cacheManager" ref="cacheManager" /> </bean>-->
+    <bean id="cacheManager" class="org.apache.shiro.cache.MemoryConstrainedCacheManager" />
+
+    <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor" />
+
 </beans>

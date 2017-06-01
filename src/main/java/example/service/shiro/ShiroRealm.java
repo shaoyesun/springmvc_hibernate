@@ -9,6 +9,7 @@ import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 import java.util.Set;
@@ -16,10 +17,11 @@ import java.util.Set;
 import example.entity.shiro.User;
 
 /**
- * Created by root on 17-5-27.
+ * Created by root on 17-5-27. 用于进行权限信息的验证
  */
 public class ShiroRealm extends AuthorizingRealm {
 
+    @Autowired
     private UserService userService;
 
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection pc) {
@@ -53,10 +55,6 @@ public class ShiroRealm extends AuthorizingRealm {
         }
 
         return null;
-    }
-
-    public void setUserService(UserService userService) {
-        this.userService = userService;
     }
 
 }
