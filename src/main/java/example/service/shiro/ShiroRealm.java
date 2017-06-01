@@ -26,6 +26,7 @@ public class ShiroRealm extends AuthorizingRealm {
     @Autowired
     private UserService userService;
 
+    //授权访问控制，用于对用户进行的操作进行人证授权，证明该用户是否允许进行当前操作，如访问某个链接，某个资源文件等
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection pc) {
         String username = (String) pc.fromRealm(getName()).iterator().next();
         if (username != null) {
@@ -45,6 +46,7 @@ public class ShiroRealm extends AuthorizingRealm {
         return null;
     }
 
+    //验证用户身份的过程
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken at) throws AuthenticationException {
         UsernamePasswordToken token = (UsernamePasswordToken) at;
         // 通过表单接收的用户名

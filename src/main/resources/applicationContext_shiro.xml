@@ -18,6 +18,7 @@
     <!--用户信息认证器和用户权限认证器-->
     <bean id="shiroDbRealm" class="example.service.shiro.ShiroRealm"></bean>
 
+    <!--对Shiro的其他组件提供缓存支持-->
     <bean id="cacheManager" class="org.apache.shiro.cache.MemoryConstrainedCacheManager" />
 
     <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor" />
