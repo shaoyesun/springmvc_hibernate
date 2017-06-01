@@ -16,13 +16,19 @@ public class HomeController {
 
     @RequestMapping("/home1")
     public String index1() {
-        System.out.println("登录成功");
+        System.out.println("home1");
         return "/shiro/home";
     }
 
     @RequestMapping("/home2")
     public String index2() {
-        System.out.println("登录成功");
+        System.out.println("home2");
+        return "/shiro/home";
+    }
+
+    @RequestMapping("/home3")
+    public String index3() {
+        System.out.println("home3");
         return "/shiro/home";
     }
 

@@ -17,7 +17,9 @@ import java.util.Set;
 import example.entity.shiro.User;
 
 /**
- * Created by root on 17-5-27. 用于进行权限信息的验证
+ * Created by root on 17-5-27.
+ *
+ * @ 用户的信息认证器和用户的权限认证器，需要自己来实现Realms来自定义的管理系统内部的权限规则
  */
 public class ShiroRealm extends AuthorizingRealm {
 

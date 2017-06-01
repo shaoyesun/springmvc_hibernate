@@ -46,7 +46,6 @@ public class LoginController {
         UsernamePasswordToken token = new UsernamePasswordToken(user.getUsername(), user.getPassword());
         Subject subject = SecurityUtils.getSubject();
         subject.login(token);
-        // 登录成功后会跳转到successUrl配置的链接，不用管下面返回的链接。
         return "redirect:/home";
     }
 }

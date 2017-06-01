@@ -9,13 +9,13 @@
 	http://www.springframework.org/schema/context/spring-context.xsd">
 
 
-    <!--用于管理所有的Subject-->
+    <!--所有Subject的管理者，这是Shiro框架的核心组件，可以把他看做是一个Shiro框架的全局管理组件，用于调度各种Shiro框架的服务-->
     <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
         <property name="realm" ref="shiroDbRealm"/>
         <property name="cacheManager" ref="cacheManager"></property>
     </bean>
 
-    <!--用于进行权限信息的验证-->
+    <!--用户信息认证器和用户权限认证器-->
     <bean id="shiroDbRealm" class="example.service.shiro.ShiroRealm"></bean>
 
     <bean id="cacheManager" class="org.apache.shiro.cache.MemoryConstrainedCacheManager" />
