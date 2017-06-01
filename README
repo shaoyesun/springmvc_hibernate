@@ -23,7 +23,7 @@ springmvc整合hibernate
         <url-pattern>/*</url-pattern>
       </filter-mapping>
     4.新建ShiroRealm.java
-    5.为了识别多个角色添加过滤器CustomRolesAuthorizationFilter.java
+    5.为了识别多个角色实现过滤器CustomRolesAuthorizationFilter.java
     6.测试
       /toLogin = authc <!-- authc 表示需要认证才能访问的页面 -->
       /home = authc, perms[/home]  <!-- perms 表示需要该权限才能访问的页面 -->
