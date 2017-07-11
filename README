@@ -35,5 +35,5 @@ springmvc整合hibernate
       /toLogin = authc <!-- authc 表示需要认证才能访问的页面 -->
       /home = authc, perms[/home]  <!-- perms 表示需要该权限才能访问的页面 -->
       /admin = authc, roles[admin] <!--表示用户必需已通过认证,并拥有admin角色才可以正常发起'/admin'请求-->
-      /home1/** = authc, roles[reg_user] <!--表示用户必需已通过认证,并拥有admin角色才可以正常发起'/home1'请求-->
+      /home1/** = authc, roles[reg_user] <!--表示用户必需已通过认证,并拥有reg_user角色才可以正常发起'/home1'请求-->
       /home2/** = authc, roles[reg_user,admin] <!--表示用户必需已通过认证,并拥有admin或reg_user角色才可以正常发起'/home2'请求-->
