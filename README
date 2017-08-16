@@ -51,3 +51,6 @@ springmvc整合hibernate
       /admin = authc, roles[admin] <!--表示用户必需已通过认证,并拥有admin角色才可以正常发起'/admin'请求-->
       /home1/** = authc, roles[reg_user] <!--表示用户必需已通过认证,并拥有reg_user角色才可以正常发起'/home1'请求-->
       /home2/** = authc, roles[reg_user,admin] <!--表示用户必需已通过认证,并拥有admin或reg_user角色才可以正常发起'/home2'请求-->
+
+四、示例一个接口多个实现类如何注入问题
+    example.controller.AnimalController
