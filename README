@@ -1,6 +1,20 @@
 springmvc整合hibernate
 一、数据源连接
 二、事务配置
+    1.applicationContext.xml
+        <!--配置spring事务管理-->
+        <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+            <property name="sessionFactory" ref="sessionFactory"></property>
+        </bean>
+
+        <!--1.注解实现事务-->
+        <tx:annotation-driven transaction-manager="transactionManager"/>
+    2.applicationContext.xml
+        <!--spring的配置文件与springMVC的配置文件对包的重复扫描装配会照成失效在主容器中（applicationContext.xml，将Controller的注解排除掉-->
+        <context:component-scan base-package="example">
+            <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+        </context:component-scan>
+    3.@Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED)
 三、shiro配置
     1.pom.xml
       <dependency>
